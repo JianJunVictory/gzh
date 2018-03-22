@@ -1,0 +1,22 @@
+{
+  "name": "wetchat",
+  "version": "1.0.0",
+  "description": "微信公账号",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "wechat",
+    "ngrok"
+  ],
+  "author": "enjoyass@outlook.com",
+  "license": "MIT",
+  "dependencies": {
+    "content-type": "^1.0.4",
+    "express": "^4.16.3",
+    "raw-body": "^2.3.2",
+    "sha1": "^1.1.1",
+    "xml": "^1.0.1"
+  }
+}
