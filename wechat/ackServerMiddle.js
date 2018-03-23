@@ -38,7 +38,8 @@ module.exports = function(opts) {
                     return;
                 }
                 var xml = string.toString();
-                parseString(xml, function(err, message) {
+                parseString(xml, function(err, data) {
+                    var message = data.xml;
                     if (message.MsgType[1] == "event") {
                         if (message.Event[1] == "subscribe") {
                             res.status(200);
