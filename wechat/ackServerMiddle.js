@@ -2,7 +2,7 @@
 const sha1 = require('sha1');
 const getRawBody = require('raw-body');
 const contentType = require('content-type');
-const xml = require('xml');
+const parseString = require('xml2js').parseString;
 
 module.exports = function(opts) {
     return function(req, res, next) {
@@ -16,9 +16,11 @@ module.exports = function(opts) {
 
         if (req.method == "GET") {
             if (sha === signature) {
-                res.send(echostr + '')
+                res.send('' + echostr);
+                next();
             } else {
-                res.send('wrong')
+                res.send('wrong');
+                return false;
             }
         } else if (req.method === "POST") {
 
@@ -35,13 +37,19 @@ module.exports = function(opts) {
                     console.error(err);
                     return;
                 }
-                console.log(string.toString());
+                var xml = string.toString();
+                parseString(xml, function(err, message) {
+                    if (message.MsgType[1] == "event") {
+                        if (message.Event[1] == "subscribe") {
+                            res.status(200);
+                            res.set('Content-Type', 'text/xml');
+                            var str = "<xml><ToUserName><![CDATA[" + message.FromUserName + "]]></ToUserName><FromUserName><![CDATA[" + message.ToUserName + "]]></FromUserName><CreateTime>" + (new Date().getTime()) + "</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[你好]]></Content></xml>"
+                            res.send(xml(str));
+                            next();
+                        }
+                    }
+                });
 
-                res.status(200);
-                res.set('Content-Type', 'text/xml');
-                var str = "<xml> <ToUserName>< ![CDATA[toUser] ]></ToUserName> <FromUserName>< ![CDATA[fromUser] ]></FromUserName> <CreateTime>12345678</CreateTime> <MsgType>< ![CDATA[text] ]></MsgType> <Content>< ![CDATA[你好] ]></Content> </xml>"
-                res.send(xml(str));
-                next();
             })
 
         }
