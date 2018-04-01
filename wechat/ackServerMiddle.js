@@ -7,7 +7,6 @@ const Wechat = require('./wechat');
 var util = require('./util');
 
 module.exports = function(opts) {
-    // var wechat = new Wechat(opts);
     return function(req, res, next) {
         var token = opts.token;
         var signature = req.query.signature;
@@ -18,6 +17,7 @@ module.exports = function(opts) {
         var sha = sha1(str);
 
         if (req.method == "GET") {
+
             if (sha === signature) {
                 res.send('' + echostr);
                 next();
