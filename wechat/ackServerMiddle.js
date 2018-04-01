@@ -3,8 +3,11 @@ const sha1 = require('sha1');
 const getRawBody = require('raw-body');
 const contentType = require('content-type');
 const parseString = require('xml2js').parseString;
+const Wechat = require('./wechat');
+var util = require('./util');
 
 module.exports = function(opts) {
+    // var wechat = new Wechat(opts);
     return function(req, res, next) {
         var token = opts.token;
         var signature = req.query.signature;
@@ -37,20 +40,12 @@ module.exports = function(opts) {
                     console.error(err);
                     return;
                 }
-                var xml = string.toString();
-                parseString(xml, function(err, data) {
-                    var message = data.xml;
-                    if (message.MsgType[1] == "event") {
-                        if (message.Event[1] == "subscribe") {
-                            res.status(200);
-                            res.set('Content-Type', 'text/xml');
-                            var str = "<xml><ToUserName><![CDATA[" + message.FromUserName + "]]></ToUserName><FromUserName><![CDATA[" + message.ToUserName + "]]></FromUserName><CreateTime>" + (new Date().getTime()) + "</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[你好]]></Content></xml>"
-                            res.send(xml(str));
-                            next();
-                        }
-                    }
-                });
-
+                var content = util.parseXMLAsync(string);
+                console.log(content);
+                var message = util.formatMessage(content);
+                req.weixin = message;
+                // Wechat.reply(res, req, next, message)
+                next();
             })
 
         }
