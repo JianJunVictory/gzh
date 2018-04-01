@@ -7,7 +7,6 @@ module.exports = function(options) {
         wechat.reply(content, message).then(function(xml) {
             delete req.content;
             res.status(200);
-            //res.set('Content-Type', 'application/xml');
             res.send(xml);
             next();
         })

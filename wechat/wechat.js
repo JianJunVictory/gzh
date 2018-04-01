@@ -1,10 +1,16 @@
 'use strict';
-const Promise = require('bluebird'); //
-const request = Promise.promisify(require('request'));
+const Promise = require('promise');
+const request = require('request');
 const util = require('./util');
-var prefix = 'https://api.weixin.qq.com/cgi-bin/token?';
+var prefix = 'https://api.weixin.qq.com/cgi-bin/';
 var api = {
-    accessToken: prefix + "grant_type=client_credential"
+    accessToken: prefix + "token?grant_type=client_credential",
+    menu: {
+        create: prefix + 'menu/create?',
+        get: prefix + 'menu/get?',
+        delete: prefix + 'menu/delete?',
+        current: prefix + ''
+    }
 }
 
 function Wechat(opts) {
@@ -12,35 +18,46 @@ function Wechat(opts) {
     this.appID = opts.appID;
     this.appsecret = opts.appsecret;
     this.getAccessToken = opts.getAccessToken;
-    this.saveAccesToken = opts.saveAccesToken;
-
-    this.getAccessToken()
-        .then(function(data) {
-            try {
-                data = JSON.parse(data)
-            } catch (e) {
-                return this.updateAccessToken(data)
-            }
-            if (this.isValidAccessToken(data)) {
-                return Promise.resolve(data);
-            } else {
-                return this.updateAccessToken();
-            }
-        }).then(function() {
-            this.access_token = data.access_token;
-            this.expire_in = data.expire_in;
-            thsi.saveAccesToken(data);
-        })
+    this.saveAccessToken = opts.saveAccessToken;
+    this.fetchAccessToken();
 }
 
+Wechat.prototype.fetchAccessToken = function() {
+    var that = this;
+    if (this.access_token && this.expires_in) {
+        if (this.isValidAccessToken(this)) {
+            return Promise.resolve(this);
+        }
+    }
+    return this.getAccessToken().then(function(data) {
+        try {
+            data = JSON.parse(data)
+        } catch (e) {
+            return that.updateAccessToken()
+        }
+
+        if (that.isValidAccessToken(data)) {
+            return Promise.resolve(data);
+        } else {
+            return that.updateAccessToken();
+        }
+    }).then(function(data) {
+        console.log(data)
+        that.access_token = data.access_token;
+        that.expire_in = data.expire_in;
+        that.saveAccessToken(data);
+        console.log(data)
+        return Promise.resolve(data);
+    })
+}
 Wechat.prototype.isValidAccessToken = function(data) {
-    if (!data || !data.access_token || !data.expire_in) {
+    if (!data || !data.access_token || !data.expires_in) {
         return false;
     }
     var access_token = data.access_token;
-    var expire_in = data.expire_in;
+    var expires_in = data.expires_in;
     var now = (new Date().getTime());
-    if (now < expire_in) {
+    if (now < expires_in) {
         return true;
     } else {
         return false;
@@ -50,18 +67,16 @@ Wechat.prototype.isValidAccessToken = function(data) {
 Wechat.prototype.updateAccessToken = function() {
     var appID = this.appID;
     var appsecret = this.appsecret;
-    var token = this.token;
-    var url = api.accessToken + '&appid' + appID + '&secret=' + appsecret;
-
+    var url = api.accessToken + '&appid=' + appID + '&secret=' + appsecret;
     return new Promise(function(resolve, reject) {
-        request({ url: url, json: true })
-            .then(function(response) {
-                var data = response[1];
-                var now = (new Date().getTime());
-                var expire_in = now + (data.expire_in - 20) * 1000;
-                data.expire_in = expire_in;
-                resolve(data);
-            })
+        request({ url: url, json: true, rejectUnauthorized: false }, function(error, response, body) {
+            if (error) reject(error)
+            var data = body
+            var now = (new Date().getTime());
+            var expires_in = now + (data.expires_in - 20) * 1000;
+            data.expires_in = expires_in;
+            resolve(data);
+        })
     })
 
 }
@@ -69,6 +84,22 @@ Wechat.prototype.reply = function(content, message) {
     return new Promise(function(resolve, reject) {
         var xml = util.tpl(content, message)
         resolve(xml);
+    })
+}
+
+Wechat.prototype.deleteMenu = function() {
+    var that = this;
+    return new Promise(function(resolve, reject) {
+        that.fetchAccessToken().then(function(data) {
+            var url = api.menu.delete + '&access_token=' + data.access_token;
+            request({ method: 'GET', rejectUnauthorized: false, url: url, json: true }, function(error, response, body) {
+                if (error) {
+                    reject(err);
+                }
+                var _data = body;
+                resolve(_data);
+            })
+        })
     })
 }
 

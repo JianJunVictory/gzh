@@ -1,5 +1,7 @@
 var Wechat = require('./wechat');
 var config = require('../config/config');
+var wechat = new Wechat(config.wechat);
+wechat.deleteMenu()
 module.exports = function() {
     return function(req, res, next) {
         var message = req.weixin;
@@ -11,6 +13,7 @@ module.exports = function() {
                 req.content = "哈哈，你订阅了订阅号！";
             } else if (message.Event === 'unsubscribe') {
                 console.log('取消了关注');
+                req.content = "哈哈，你取消订阅号！";
             } else if (message.Event === 'LOCATION') {
                 req.content = "你上报的位置是" + message.Latitude + message.Longitude + ' 精度' + message.Precision;
                 console.log('取消了关注');

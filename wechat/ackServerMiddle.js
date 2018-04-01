@@ -20,7 +20,6 @@ module.exports = function(opts) {
 
             if (sha === signature) {
                 res.send('' + echostr);
-                next();
             } else {
                 res.send('wrong');
                 return false;
