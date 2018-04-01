@@ -2,12 +2,12 @@ var Wechat = require('./wechat');
 module.exports = function(options) {
     var wechat = new Wechat(options);
     return function(req, res, next) {
-        var content = res.body;
-        var message = req.message;
+        var content = req.content;
+        var message = req.weixin;
         wechat.reply(content, message).then(function(xml) {
-            delete res.body;
+            delete req.content;
             res.status(200);
-            res.type('application/xml');
+            //res.set('Content-Type', 'application/xml');
             res.send(xml);
             next();
         })

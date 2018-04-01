@@ -23,7 +23,7 @@ function formatMessage(result) {
                 continue;
             }
             if (item.length === 1) {
-                var vla = item[0]
+                var val = item[0]
 
                 if (typeof val === 'object') {
                     message[key] = formatMessage(val)
@@ -54,6 +54,7 @@ exports.tpl = function(content, message) {
     type = content.type || type;
     info.content = content;
     info.msgType = type;
+    info.createTime = (new Date().getTime())
     info.fromUserName = toUserName;
     info.toUserName = fromUserName;
     return tpl.compiled(info);

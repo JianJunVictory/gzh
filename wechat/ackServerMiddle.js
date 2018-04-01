@@ -40,12 +40,12 @@ module.exports = function(opts) {
                     console.error(err);
                     return;
                 }
-                var content = util.parseXMLAsync(string);
-                console.log(content);
-                var message = util.formatMessage(content);
-                req.weixin = message;
-                // Wechat.reply(res, req, next, message)
-                next();
+                var content = util.parseXMLAsync(string).then(function(xmlData) {
+                    var message = util.formatXMLMessage(xmlData);
+                    req.weixin = message;
+                    next();
+                });
+
             })
 
         }
