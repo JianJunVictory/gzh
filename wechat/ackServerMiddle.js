@@ -41,7 +41,7 @@ module.exports = function(opts) {
                     return;
                 }
                 var content = util.parseXMLAsync(string).then(function(xmlData) {
-                    var message = util.formatXMLMessage(xmlData);
+                    var message = util.formatXMLMessage(xmlData.xml);
                     req.weixin = message;
                     next();
                 });

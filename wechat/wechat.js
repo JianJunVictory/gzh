@@ -68,6 +68,7 @@ Wechat.prototype.updateAccessToken = function() {
 Wechat.prototype.reply = function(content, message) {
     return new Promise(function(resolve, reject) {
         var xml = util.tpl(content, message)
+        console.log(xml);
         resolve(xml);
     })
 }

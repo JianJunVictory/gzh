@@ -4,10 +4,10 @@ const heredoc = require('heredoc');
 var tpl = heredoc(function() {
         /*
             <xml>
-                <ToUserName><![DATA[<%= toUserName %>]]></ToUserName>
-                <FromUserName><![DATA[<%= fromUserName %>]]></FromUserName>
+                <ToUserName><![CDATA[<%= toUserName %>]]></ToUserName>
+                <FromUserName><![CDATA[<%= fromUserName %>]]></FromUserName>
                 <CreateTime><%= createTime %></CreateTime>
-                <MsgType>< ![CDATA[<%= msgType %>]]></MsgType>
+                <MsgType><![CDATA[<%= msgType %>]]></MsgType>
                 <% if (msgType=='text') { %>
                     <Content><![CDATA[<%= content %>]]></Content>
                 <% } else if(msgType=='image') { %>
@@ -20,10 +20,10 @@ var tpl = heredoc(function() {
     })
     //串都可以两种形式的字符
 var tpls = '<xml>' +
-    '<ToUserName><![DATA[<%= toUserName %>]]></ToUserName>' +
-    '<FromUserName><![DATA[<%= fromUserName %>]]></FromUserName>' +
+    '<ToUserName><![CDATA[<%= toUserName %>]]></ToUserName>' +
+    '<FromUserName><![CDATA[<%= fromUserName %>]]></FromUserName>' +
     '<CreateTime><%= createTime %></CreateTime>' +
-    '<MsgType>< ![CDATA[<%= msgType %>]]></MsgType>' +
+    '<MsgType><![CDATA[<%= msgType %>]]></MsgType>' +
     '<% if (msgType=="text") { %>' +
     '<Content><![CDATA[<%= content %>]]></Content>' +
     '<% } else if(msgType=="image") { %>' +
@@ -32,7 +32,7 @@ var tpls = '<xml>' +
     '</Image>' +
     '<% } %>' +
     '</xml>'
-var compiled = ejs.compile(tpl);
+var compiled = ejs.compile(tpls);
 module.exports = {
     compiled: compiled
 }
