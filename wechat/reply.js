@@ -1,13 +1,20 @@
 var Wechat = require('./wechat');
 var menu = require('../config/menu');
+
 module.exports = function(opts) {
     var wechatApi = new Wechat(opts)
     wechatApi.createMenu(menu).then(function(data) {
-            console.log(data);
-        })
-        /*	wechatApi.deleteMenu().then(function(data){
+            if (data.errcode == 0) {
+                console.log('创建菜单成功')
                 console.log(data);
-            })*/
+            } else {
+                console.error('创建菜单成功')
+                console.error(data);
+            }
+        })
+        // wechatApi.deleteMenu().then(function(data) {
+        //     console.log(data)
+        // })
     return function(req, res, next) {
         dotext(req, opts, function(data) {
             req.content = data;
