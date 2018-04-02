@@ -7,7 +7,7 @@ const weixin = require('./wechat/weixin');
 
 
 app.use(ackServerMiddle(config.wechat));
-app.use(reply());
+app.use(reply(config.wechat));
 app.use(weixin(config.wechat));
 
 app.listen(config.server.port, function() {
