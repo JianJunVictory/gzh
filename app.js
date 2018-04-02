@@ -5,7 +5,7 @@ const reply = require('./wechat/reply');
 const app = express();
 const weixin = require('./wechat/weixin');
 const router = express.Router();
-const newrout = require('./router/wechat')(router, config.wechat)
+const newrout = require('./router/wechatMiddle')(router, config.wechat)
 
 
 // app.use(middle(config.wechat));

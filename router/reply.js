@@ -1,4 +1,4 @@
-var Wechat = require('../wechat/wechat');
+var Wechat = require('./wechat');
 var menu = require('../config/menu');
 
 module.exports = function(req, res) {
