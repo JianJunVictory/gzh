@@ -3,7 +3,7 @@ const xml2js = require('xml2js');
 const Promise = require('promise');
 const tpl = require('./tpl');
 
-exports.parseXMLAsync = function(xml) {
+exports.parseXMLmessage = function(xml) {
     return new Promise(function(resolve, reject) {
         xml2js.parseString(xml, { trim: true }, function(err, content) {
             if (err) reject(err);

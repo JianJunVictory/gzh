@@ -1,30 +1,35 @@
-var Wechat = require('./wechat');
+var Wechat = require('../wechat/wechat');
 var menu = require('../config/menu');
 
-module.exports = function(opts) {
+module.exports = function(req, res) {
+    var opts = req.opts;
     var wechatApi = new Wechat(opts)
-    wechatApi.createMenu(menu).then(function(data) {
-        if (data.errcode == 0) {
-            console.log('创建菜单成功')
-            console.log(data);
-        } else {
-            console.error('创建菜单成功')
-            console.error(data);
-        }
-    })
-    return function(req, res) {
-        dotext(req, opts, function(data) {
-            console.log('aaaaaaaaaaaaaaaa%j', data);
-            req.content = data;
+        // wechatApi.createMenu(menu).then(function(data) {
+        //     if (data.errcode == 0) {
+        //         console.log('创建菜单成功')
+        //         console.log(data);
+        //     } else {
+        //         console.error('创建菜单成功')
+        //         console.error(data);
+        //     }
+        // })
+    dotext(req, opts, function(data) {
+        var message = req.weixin;
+        wechatApi.reply(data, message).then(function(xml) {
+            console.log(xml)
+            res.status(200);
+            res.send(xml);
             next();
         })
-    }
+
+    })
+
 }
 
 function dotext(req, opts, cb) {
-    var wechat = new Wechat(opts);
     var message = req.weixin;
     var msgType = message.MsgType;
+    var wechat = new Wechat(opts);
     if (msgType == "event") {
         if (message.Event === 'subscribe') {
             if (message.EventKey) {
@@ -186,5 +191,6 @@ function dotext(req, opts, cb) {
                 cb(replys)
             })
         }
+
     }
 }

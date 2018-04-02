@@ -14,38 +14,41 @@ module.exports = function(opts) {
         var timestamp = req.query.timestamp;
         var echostr = req.query.echostr;
         var str = [token, timestamp, nonce].sort().join('');
-        var sha = sha1(str);
+        var hashcode = sha1(str);
 
         if (req.method == "GET") {
-
-            if (sha === signature) {
-                res.send('' + echostr);
+            console.log("aaaaaaaaaaaaaaa" + req.baseUrl)
+            if (req.baseUrl == "/" || req.baseUrl == "") {
+                if (hashcode == signature) {
+                    res.send("" + echostr);
+                } else {
+                    res.send("wrong");
+                    next();
+                }
             } else {
-                res.send('wrong');
-                return false;
+
+                next();
             }
         } else if (req.method === "POST") {
-
-            if (sha !== signature) {
-                res.send('wrong')
-                return false;
-            }
-            getRawBody(req, {
-                length: req.headers['content-length'],
-                limit: '1mb',
-                encoding: contentType.parse(req).parameters.charset
-            }, function(err, string) {
-                if (err) {
-                    console.error(err);
-                    return;
+            if (req.baseUrl == "" || req.baseUrl == "/") {
+                if (hashcode !== signature) {
+                    res.send("wrong");
+                    return false;
                 }
-                var content = util.parseXMLAsync(string).then(function(xmlData) {
-                    var message = util.formatXMLMessage(xmlData.xml);
-                    req.weixin = message;
-                    next();
+                getRawBody(req, { length: req.headers['content-length'], limit: '1mb', encoding: contentType.parse(req).parameters.charset }, function(err, strings) {
+                    if (err) {
+                        console.log(err);
+                        return false;
+                    }
+                    util.parseXMLmessage(strings).then(function(xmlData) {
+                        var message = util.formatXMLMessage(xmlData.xml);
+                        req.weixin = message;
+                        next();
+                    });
                 });
-
-            })
+            } else {
+                next();
+            }
 
         }
     }
