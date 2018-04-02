@@ -143,7 +143,7 @@ Wechat.prototype.uploadMaterial = function(type, material, permanent) {
         form.media = fs.createReadStream(material);
     }
     return new Promise(function(resolve, reject) {
-        that.fetchAccssToken()
+        that.fetchAccessToken()
             .then(function(data) {
                 var url = uploadUrl + '&access_token=' + data.access_token;
                 if (!permanent) {
@@ -185,7 +185,7 @@ Wechat.prototype.fetchMaterial = function(mediaId, material, permanent) {
         fetchUrl = api.permanent.fetch;
     }
     return new Promise(function(resolve, reject) {
-        that.fetchAccssToken()
+        that.fetchAccessToken()
             .then(function(data) {
                 var url = fetchUrl + '&access_token=' + data.access_token;
                 var options = { method: "GET", url: url, body: form, json: true };
@@ -224,7 +224,7 @@ Wechat.prototype.deleteMaterial = function(mediaId) {
         media_id: mediaId
     };
     return new Promise(function(resolve, reject) {
-        that.fetchAccssToken()
+        that.fetchAccessToken()
             .then(function(data) {
                 var url = api.permanent.del + '&access_token=' + data.access_token + '&media_id=' + mediaId;
                 request({ method: "POST", url: url, body: form, json: true }, function(error, response, body) {
@@ -248,7 +248,7 @@ Wechat.prototype.updateMaterial = function(mediaId, news) {
     };
     _.extend(form, news);
     return new Promise(function(resolve, reject) {
-        that.fetchAccssToken()
+        that.fetchAccessToken()
             .then(function(data) {
                 var url = api.permanent.update + '&access_token=' + data.access_token + '&media_id=' + mediaId;
                 request({ method: "POST", url: url, body: form, json: true }, function(error, response, body) {
@@ -269,7 +269,7 @@ Wechat.prototype.countMaterial = function() {
     var that = this
 
     return new Promise(function(resolve, reject) {
-        that.fetchAccssToken()
+        that.fetchAccessToken()
             .then(function(data) {
                 var url = api.permanent.count + '&access_token=' + data.access_token;
                 request({ method: "GET", url: url, json: true }, function(error, response, body) {
@@ -294,7 +294,7 @@ Wechat.prototype.batchMaterial = function(options) {
 
 
     return new Promise(function(resolve, reject) {
-        that.fetchAccssToken()
+        that.fetchAccessToken()
             .then(function(data) {
                 var url = api.permanent.batch + '&access_token=' + data.access_token;
                 request({ method: "POST", url: url, body: options, json: true }, function(error, response, body) {
@@ -315,7 +315,7 @@ Wechat.prototype.batchMaterial = function(options) {
 Wechat.prototype.createTag = function(name) {
     var that = this
     return new Promise(function(resolve, reject) {
-        that.fetchAccssToken()
+        that.fetchAccessToken()
             .then(function(data) {
                 var url = api.tag.create + '&access_token=' + data.access_token;
                 var options = {
@@ -340,7 +340,7 @@ Wechat.prototype.createTag = function(name) {
 Wechat.prototype.fetchTag = function() {
     var that = this
     return new Promise(function(resolve, reject) {
-        that.fetchAccssToken()
+        that.fetchAccessToken()
             .then(function(data) {
                 var url = api.tag.fetch + '&access_token=' + data.access_token;
                 request({ method: "GET", url: url, json: true }, function(error, response, body) {
@@ -361,7 +361,7 @@ Wechat.prototype.fetchTag = function() {
 Wechat.prototype.updateTag = function(id, name) {
     var that = this
     return new Promise(function(resolve, reject) {
-        that.fetchAccssToken()
+        that.fetchAccessToken()
             .then(function(data) {
                 var url = api.tag.update + '&access_token=' + data.access_token;
                 var options = {
@@ -388,7 +388,7 @@ Wechat.prototype.updateTag = function(id, name) {
 Wechat.prototype.deleteTag = function(id) {
     var that = this
     return new Promise(function(resolve, reject) {
-        that.fetchAccssToken()
+        that.fetchAccessToken()
             .then(function(data) {
                 var url = api.tag.del + '&access_token=' + data.access_token;;
                 var options = {
@@ -414,7 +414,7 @@ Wechat.prototype.deleteTag = function(id) {
 Wechat.prototype.getTagusers = function(tagid, next_openid) {
     var that = this
     return new Promise(function(resolve, reject) {
-        that.fetchAccssToken()
+        that.fetchAccessToken()
             .then(function(data) {
                 var url = api.tag.getTagUsers + '&access_token=' + data.access_token;;
                 var options = {
@@ -439,7 +439,7 @@ Wechat.prototype.getTagusers = function(tagid, next_openid) {
 Wechat.prototype.batchTag = function(openid_list, tagid) {
     var that = this
     return new Promise(function(resolve, reject) {
-        that.fetchAccssToken()
+        that.fetchAccessToken()
             .then(function(data) {
                 var url = api.tag.batchtagging + '&access_token=' + data.access_token;;
                 var options = {
@@ -463,7 +463,7 @@ Wechat.prototype.batchTag = function(openid_list, tagid) {
 Wechat.prototype.getTagList = function(openid) {
     var that = this
     return new Promise(function(resolve, reject) {
-        that.fetchAccssToken()
+        that.fetchAccessToken()
             .then(function(data) {
                 var url = api.tag.getList + '&access_token=' + data.access_token;;
                 var options = {
@@ -486,7 +486,7 @@ Wechat.prototype.getTagList = function(openid) {
 Wechat.prototype.batchUnTag = function(openid_list, tagid) {
     var that = this
     return new Promise(function(resolve, reject) {
-        that.fetchAccssToken()
+        that.fetchAccessToken()
             .then(function(data) {
                 var url = api.tag.batchuntagging + '&access_token=' + data.access_token;;
                 var options = {
@@ -510,7 +510,7 @@ Wechat.prototype.batchUnTag = function(openid_list, tagid) {
 Wechat.prototype.remarkUser = function(openId, remark) {
     var that = this
     return new Promise(function(resolve, reject) {
-        that.fetchAccssToken()
+        that.fetchAccessToken()
             .then(function(data) {
                 var url = api.user.remark + '&access_token=' + data.access_token;;
                 var options = {
@@ -536,7 +536,7 @@ Wechat.prototype.fetchUser = function(openIds, lang) {
     var that = this
     lang = lang || "zh_CN";
     return new Promise(function(resolve, reject) {
-        that.fetchAccssToken()
+        that.fetchAccessToken()
             .then(function(data) {
                 var url;
                 var options = { json: true };
@@ -571,7 +571,7 @@ Wechat.prototype.fetchUser = function(openIds, lang) {
 Wechat.prototype.listUsers = function(openId) {
     var that = this
     return new Promise(function(resolve, reject) {
-        that.fetchAccssToken()
+        that.fetchAccessToken()
             .then(function(data) {
                 var url = api.user.list + '&access_token=' + data.access_token;
                 if (openId) {
@@ -605,7 +605,7 @@ Wechat.prototype.sendByTag = function(type, message, tagId) {
         msg.filter.tag_id = tagId;
     }
     return new Promise(function(resolve, reject) {
-        that.fetchAccssToken()
+        that.fetchAccessToken()
             .then(function(data) {
                 var url = api.mass.group + '&access_token=' + data.access_token;
                 request({ method: "POST", url: url, body: msg, json: true }, function(error, response, body) {
@@ -625,7 +625,7 @@ Wechat.prototype.sendByTag = function(type, message, tagId) {
 Wechat.prototype.createMenu = function(menuJsonData) {
     var that = this;
     return new Promise(function(resolve, reject) {
-        that.fetchAccssToken()
+        that.fetchAccessToken()
             .then(function(data) {
                 var url = api.menu.create + '&access_token=' + data.access_token;
                 request({ method: 'POST', url: url, body: menuJsonData, json: true }, function(error, response, body) {
@@ -633,7 +633,6 @@ Wechat.prototype.createMenu = function(menuJsonData) {
                         reject(error);
                     }
                     var _data = body;
-                    console.log(_data);
                     if (_data) {
                         resolve(_data)
                     } else {
@@ -646,7 +645,7 @@ Wechat.prototype.createMenu = function(menuJsonData) {
 Wechat.prototype.getMenu = function() {
     var that = this;
     return new Promise(function(resolve, reject) {
-        that.fetchAccssToken()
+        that.fetchAccessToken()
             .then(function(data) {
                 var url = api.menu.get + '&access_token=' + data.access_token;
                 request({ method: 'GET', url: url, json: true }, function(error, response, body) {
@@ -666,7 +665,7 @@ Wechat.prototype.getMenu = function() {
 Wechat.prototype.deleteMenu = function() {
     var that = this;
     return new Promise(function(resolve, reject) {
-        that.fetchAccssToken()
+        that.fetchAccessToken()
             .then(function(data) {
                 var url = api.menu.get + '&access_token=' + data.access_token;
                 request({ method: 'GET', url: url, json: true }, function(error, response, body) {
@@ -687,7 +686,7 @@ Wechat.prototype.deleteMenu = function() {
 Wechat.prototype.getCurrentMenu = function() {
     var that = this;
     return new Promise(function(resolve, reject) {
-        that.fetchAccssToken()
+        that.fetchAccessToken()
             .then(function(data) {
                 var url = api.menu.current + '&access_token=' + data.access_token;
                 request({ method: 'GET', url: url, json: true }, function(error, response, body) {
@@ -707,7 +706,7 @@ Wechat.prototype.getCurrentMenu = function() {
 Wechat.prototype.semantic = function(semanticData) {
     var that = this;
     return new Promise(function(resolve, reject) {
-        that.fetchAccssToken()
+        that.fetchAccessToken()
             .then(function(data) {
                 var url = semanticUrl + '&access_token=' + data.access_token;
                 semanticData.appid = data.appID;
