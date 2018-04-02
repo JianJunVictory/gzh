@@ -1,12 +1,12 @@
 const express = require('express');
-const ackServerMiddle = require('./wechat/ackServerMiddle');
+const middle = require('./wechat/Middle');
 const config = require('./config/config');
 const reply = require('./wechat/reply');
 const app = express();
 const weixin = require('./wechat/weixin');
 
 
-app.use(ackServerMiddle(config.wechat));
+app.use(middle(config.wechat));
 app.use(reply(config.wechat));
 app.use(weixin(config.wechat));
 
