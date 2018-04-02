@@ -73,6 +73,7 @@ function dotext(req, opts, cb) {
     } else if (msgType === "text") {
         var content = message.Content;
         if (content === '1') {
+            //同上同下，以后可以扩展从数据库配置
             var replysData = '信息item1'
             cb(replysData)
         } else if (content === '2') {
