@@ -18,6 +18,23 @@ const config = {
     },
     server: {
         port: 1234
+    },
+    authToken: {
+        redirect_url: 'http://1203f9d1.ngrok.io/cognate/bind',
+        state: '123',
+        scope: 'snsapi_base'
+    },
+    DBConfig: {
+        fishdb: {
+            "host": "192.168.232.128",
+            "port": 3306,
+            "user": "root",
+            "password": "123456",
+            "database": "fishdb",
+            "charset": "UTF8_GENERAL_CI",
+            "connectNum": 10,
+            "idleTimeoutMillis": 30000
+        }
     }
 }
 

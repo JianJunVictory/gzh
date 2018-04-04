@@ -1,17 +1,38 @@
 const express = require('express');
-const middle = require('./wechat/Middle');
-const config = require('./config/config');
-const reply = require('./wechat/reply');
+const bodyParser = require('body-parser');
+const multer = require('multer');
+const ejs = require('ejs');
 const app = express();
-const weixin = require('./wechat/weixin');
 const router = express.Router();
-const newrout = require('./router/wechatMiddle')(router, config.wechat)
+
+const config = require('./config/config');
+global.logger = require('./logger.js');
+global.DBManager = require("./DBManager/DB.js")(config.DBConfig);
+
+var wechatModule = require('./router/wechat/wechatMiddle')(router, config.wechat)
+var menuRouter = require('./router/black/menuRouter')(router, config.wechat)
+var tagRouter = require('./router/black/tagRouter')(router, config.wechat)
+var userRouter = require('./router/black/userRouter')(router, config.wechat)
+var userRouter = require('./router/black/userRouter')(router, config.wechat)
+var authTokenRouter = require('./router/cognate/bindUid')(router)
 
 
-// app.use(middle(config.wechat));
-// app.use(reply(config.wechat));
-// app.use(weixin(config.wechat));
-app.use(newrout)
+app.set("view engine", 'ejs');
+app.engine('html', ejs.renderFile);
+app.set('views', __dirname + '/views');
+app.use(express.static('public'));
+
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(multer());
+
+app.use(wechatModule);
+app.use('/menu', menuRouter);
+app.use('/tag', tagRouter);
+app.use('/user', userRouter);
+app.use('/cognate', authTokenRouter);
+
 app.get('/name', function(req, res) {
     res.send('aaaa')
 })

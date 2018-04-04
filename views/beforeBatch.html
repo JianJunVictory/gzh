@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/weui.css">
+    <title>绑定游戏ID页面</title>
+</head>
+<body>
+	<div class="page__hd">
+        <h1 class="page__title" style="text-align:center;padding-top:5%">账号绑定</h1>
+        <p class="page__desc">提示:将游戏账号与微信绑定，可以参与微信公众号中的活动或小游戏领取奖励</p>
+    </div>
+    <div class="weui-cells weui-cells_form" style='margin-top:20%'>
+            <div class="weui-cell weui-cell_vcode">
+                <div class="weui-cell__hd">
+                    <label class="weui-label">游戏ID</label>
+                </div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" type="text" id='uid'  placeholder="请输入游戏ID">
+                </div>
+                <div class="weui-cell__ft">
+                    <button class="weui-vcode-btn" id='getCheckCode'>获取验证码</button>
+                </div>
+            </div>
+            <div class="weui-cell">
+                <div class="weui-cell__hd"><label class="weui-label">验证码</label></div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" type="text" id='checkCode'  placeholder="请输入游戏邮箱收到的验证码">
+                </div>
+            </div>
+             <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <input class="weui-input" type="text" id="openId" style="display:none" value="<%= openid %>">
+                </div>
+            </div>
+        </div>
+
+        <label for="weuiAgree" class="weui-agree">
+            <input id="weuiAgree" type="checkbox" class="weui-agree__checkbox">
+            <span class="weui-agree__text">
+                阅读并同意<a href="javascript:void(0);">《相关条款》</a>
+            </span>
+        </label>
+
+        <div class="weui-btn-area">
+            <a class="weui-btn weui-btn_primary" href="javascript:" id="showTooltips">确定</a>
+        </div>
+</body>
+<script src="/js/weui.js"></script>
+<script src="/js/zepto.min.js"></script>
+<script>
+	
+	//	var uuid="<%= openid %>";
+    $('#showTooltips').on('click',function(e){
+		var aaa=$('#uid').val();
+		var checkCode=$('#checkCode').val();
+		var uuid=$('#openId').val()
+        $.ajax({
+            type: 'POST',
+            url: '/cognate/bind',
+            data:{openid:uuid,uid:aaa,ckeckCode:checkCode},
+            dataType: 'json',
+            timeout: 300
+        })
+    })
+</script>
+</html>
