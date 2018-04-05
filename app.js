@@ -1,6 +1,5 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const multer = require('multer');
 const ejs = require('ejs');
 const app = express();
 const router = express.Router();
@@ -25,7 +24,7 @@ app.use(express.static('public'));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-// app.use(multer());
+
 
 app.use(wechatModule);
 app.use('/menu', menuRouter);
@@ -37,5 +36,5 @@ app.get('/name', function(req, res) {
     res.send('aaaa')
 })
 app.listen(config.server.port, function() {
-    console.log("server run at http://0.0.0.0:" + config.server.port);
+    global.logger.info("server run at http://0.0.0.0:" + config.server.port);
 });

@@ -1,0 +1,85 @@
+[2018-04-04T20:49:36.724] [INFO] wechatOffical - server run at http://0.0.0.0:1234
+[2018-04-04T20:51:25.306] [INFO] wechatOffical - class extends Model {}同步完成
+[2018-04-04T20:51:25.310] [INFO] wechatOffical - 数据库同步完成
+[2018-04-04T20:51:25.508] [INFO] wechatOffical - server run at http://0.0.0.0:1234
+[2018-04-04T20:52:10.022] [INFO] wechatOffical - class extends Model {}同步完成
+[2018-04-04T20:52:10.025] [INFO] wechatOffical - 数据库同步完成
+[2018-04-04T20:52:10.249] [INFO] wechatOffical - server run at http://0.0.0.0:1234
+[2018-04-04T20:52:43.601] [INFO] wechatOffical - class extends Model {}同步完成
+[2018-04-04T20:52:43.603] [INFO] wechatOffical - 数据库同步完成
+[2018-04-04T20:52:43.849] [INFO] wechatOffical - server run at http://0.0.0.0:1234
+[2018-04-04T20:53:07.238] [INFO] wechatOffical - class extends Model {}同步完成
+[2018-04-04T20:53:07.238] [INFO] wechatOffical - 数据库同步完成
+[2018-04-04T20:53:07.481] [INFO] wechatOffical - server run at http://0.0.0.0:1234
+[2018-04-04T21:12:59.159] [INFO] wechatOffical - class extends Model {}同步完成
+[2018-04-04T21:12:59.162] [INFO] wechatOffical - 数据库同步完成
+[2018-04-04T21:12:59.374] [INFO] wechatOffical - server run at http://0.0.0.0:1234
+[2018-04-04T21:17:56.652] [INFO] wechatOffical - class extends Model {}同步完成
+[2018-04-04T21:17:56.657] [INFO] wechatOffical - 数据库同步完成
+[2018-04-04T21:17:56.834] [INFO] wechatOffical - server run at http://0.0.0.0:1234
+[2018-04-04T21:20:50.440] [INFO] wechatOffical - class extends Model {}同步完成
+[2018-04-04T21:20:50.442] [INFO] wechatOffical - 数据库同步完成
+[2018-04-04T21:20:50.669] [INFO] wechatOffical - server run at http://0.0.0.0:1234
+[2018-04-04T21:21:35.780] [INFO] wechatOffical - class extends Model {}同步完成
+[2018-04-04T21:21:35.783] [INFO] wechatOffical - 数据库同步完成
+[2018-04-04T21:21:35.977] [INFO] wechatOffical - server run at http://0.0.0.0:1234
+[2018-04-04T21:23:14.517] [INFO] wechatOffical - class extends Model {}同步完成
+[2018-04-04T21:23:14.519] [INFO] wechatOffical - 数据库同步完成
+[2018-04-04T21:23:14.762] [INFO] wechatOffical - server run at http://0.0.0.0:1234
+[2018-04-04T21:23:42.406] [INFO] wechatOffical - class extends Model {}同步完成
+[2018-04-04T21:23:42.408] [INFO] wechatOffical - 数据库同步完成
+[2018-04-04T21:23:42.642] [INFO] wechatOffical - server run at http://0.0.0.0:1234
+[2018-04-04T21:24:34.064] [INFO] wechatOffical - class extends Model {}同步完成
+[2018-04-04T21:24:34.067] [INFO] wechatOffical - 数据库同步完成
+[2018-04-04T21:24:34.351] [INFO] wechatOffical - server run at http://0.0.0.0:1234
+[2018-04-04T21:28:11.883] [INFO] wechatOffical - class extends Model {}同步完成
+[2018-04-04T21:28:11.885] [INFO] wechatOffical - 数据库同步完成
+[2018-04-04T21:28:12.126] [INFO] wechatOffical - server run at http://0.0.0.0:1234
+[2018-04-04T21:34:35.995] [INFO] wechatOffical - class extends Model {}同步完成
+[2018-04-04T21:34:36.010] [INFO] wechatOffical - 数据库同步完成
+[2018-04-04T21:34:50.190] [INFO] wechatOffical - server run at http://0.0.0.0:1234
+[2018-04-04T22:06:50.548] [INFO] wechatOffical - class extends Model {}同步完成
+[2018-04-04T22:06:50.551] [INFO] wechatOffical - 数据库同步完成
+[2018-04-04T22:06:54.300] [INFO] wechatOffical - server run at http://0.0.0.0:1234
+[2018-04-04T22:16:40.337] [INFO] wechatOffical - class extends Model {}同步完成
+[2018-04-04T22:16:40.339] [INFO] wechatOffical - 数据库同步完成
+[2018-04-04T22:16:40.525] [INFO] wechatOffical - server run at http://0.0.0.0:1234
+[2018-04-04T22:16:53.191] [INFO] wechatOffical - 用户通过公众号请求的数据：[object Object]
+[2018-04-04T22:17:19.710] [INFO] wechatOffical - class extends Model {}同步完成
+[2018-04-04T22:17:19.713] [INFO] wechatOffical - 数据库同步完成
+[2018-04-04T22:17:19.903] [INFO] wechatOffical - server run at http://0.0.0.0:1234
+[2018-04-04T22:17:23.650] [INFO] wechatOffical - 用户通过公众号请求的数据：{"ToUserName":"gh_8596e5cbfe10","FromUserName":"oJ93R07DIB5MLhMamBbdc6QErU8A","CreateTime":"1522851440","MsgType":"text","Content":"1","MsgId":"6540597131917120592"}
+[2018-04-04T22:20:21.448] [INFO] wechatOffical - class extends Model {}同步完成
+[2018-04-04T22:20:21.453] [INFO] wechatOffical - 数据库同步完成
+[2018-04-04T22:20:21.744] [INFO] wechatOffical - server run at http://0.0.0.0:1234
+[2018-04-04T22:20:25.799] [INFO] wechatOffical - 用户通过公众号请求的数据：{"ToUserName":"gh_8596e5cbfe10","FromUserName":"oJ93R07DIB5MLhMamBbdc6QErU8A","CreateTime":"1522851622","MsgType":"event","Event":"CLICK","EventKey":"bind"}
+[2018-04-04T22:22:58.312] [INFO] wechatOffical - class extends Model {}同步完成
+[2018-04-04T22:22:58.315] [INFO] wechatOffical - 数据库同步完成
+[2018-04-04T22:22:58.483] [INFO] wechatOffical - server run at http://0.0.0.0:1234
+[2018-04-04T22:23:04.674] [ERROR] wechatOffical - Token文件获取access_token错误：[object Object]
+[2018-04-04T22:23:19.682] [INFO] wechatOffical - class extends Model {}同步完成
+[2018-04-04T22:23:19.685] [INFO] wechatOffical - 数据库同步完成
+[2018-04-04T22:23:19.870] [INFO] wechatOffical - server run at http://0.0.0.0:1234
+[2018-04-04T22:23:23.118] [ERROR] wechatOffical - Token文件获取access_token错误：{}
+[2018-04-04T22:24:54.906] [INFO] wechatOffical - class extends Model {}同步完成
+[2018-04-04T22:24:54.910] [INFO] wechatOffical - 数据库同步完成
+[2018-04-04T22:24:55.217] [INFO] wechatOffical - server run at http://0.0.0.0:1234
+[2018-04-04T22:25:04.148] [ERROR] wechatOffical - Token文件获取access_token错误：{}
+[2018-04-04T22:25:58.347] [INFO] wechatOffical - class extends Model {}同步完成
+[2018-04-04T22:25:58.356] [INFO] wechatOffical - 数据库同步完成
+[2018-04-04T22:25:58.641] [INFO] wechatOffical - server run at http://0.0.0.0:1234
+[2018-04-04T22:26:06.672] [ERROR] wechatOffical - Token文件获取access_token错误：{}
+[2018-04-04T22:27:35.349] [INFO] wechatOffical - class extends Model {}同步完成
+[2018-04-04T22:27:35.352] [INFO] wechatOffical - 数据库同步完成
+[2018-04-04T22:27:35.537] [INFO] wechatOffical - server run at http://0.0.0.0:1234
+[2018-04-04T22:27:41.996] [ERROR] wechatOffical - Token文件获取access_token错误：null
+[2018-04-04T22:27:41.996] [INFO] wechatOffical - Token文件获取access_token：{"access_token":"8_OcrxvsnmA1tLr29Dosifc9JViWfavcrMSoMg5KyJhi2-89HJZVpVE0-U85guxLwO-tpNfSMNG11nBxiiP3pBKzFv8FRb4LjFeDiAwB3m0Yw","expires_in":7200,"refresh_token":"8_8ULbYsOVHBIafNcFXq4U63PWt6iMqpqoGgYp6oiizkaaUoX1RViAT0vFxyvK1_MCYkDnrTA3Hl8LTZzKD_nEM-jCVHqnFbhDThpp3Eew9Nw","openid":"oJ93R07DIB5MLhMamBbdc6QErU8A","scope":"snsapi_base"}
+[2018-04-04T22:27:42.351] [ERROR] wechatOffical - Token文件获取access_token错误：null
+[2018-04-04T22:27:42.351] [INFO] wechatOffical - Token文件获取access_token：{"access_token":"8_cBOeH1GPRx8crdTHCBW6iyPXeBpa_qKQ2SSBvdXiVur86_N8NGc5D4FD2VZij7HzznfV_47NCbT83Pfp9Ur2-CNAhaJQy1vU-bLPczzVyF4","expires_in":7200,"refresh_token":"8_heSKrkd2o69ntucadXUJzB4YkdwRsd-orhovZpKKEc_GucWZioDeUBc7qYXqsir2Bc0-RmPXEbqKWSbdp2EU_mHR7zqDv-P-xkrqSH6CVZY","openid":"oJ93R07DIB5MLhMamBbdc6QErU8A","scope":"snsapi_base"}
+[2018-04-04T22:27:52.163] [ERROR] wechatOffical - Token文件获取access_token错误：null
+[2018-04-04T22:27:52.163] [INFO] wechatOffical - Token文件获取access_token：{"errcode":40163,"errmsg":"code been used, hints: [ req_id: 3UH8ia0069th36 ]"}
+[2018-04-04T22:28:37.195] [INFO] wechatOffical - class extends Model {}同步完成
+[2018-04-04T22:28:37.198] [INFO] wechatOffical - 数据库同步完成
+[2018-04-04T22:28:37.391] [INFO] wechatOffical - server run at http://0.0.0.0:1234
+[2018-04-04T22:28:40.428] [INFO] wechatOffical - 用户通过公众号请求的数据：{"ToUserName":"gh_8596e5cbfe10","FromUserName":"oJ93R07DIB5MLhMamBbdc6QErU8A","CreateTime":"1522852116","MsgType":"event","Event":"CLICK","EventKey":"bind"}
+[2018-04-04T22:28:49.789] [INFO] wechatOffical - Token文件获取access_token：{"access_token":"8_vfi40UfBGrhHPwz0euiDghqDcNI_yyndbG62D9kbwQt_CLH1tfALZayJxyQSqA-6Ye6nSc4CoAkpo6EGIr7Eju2ymZ_EkfXV_LkJ7DakMtQ","expires_in":7200,"refresh_token":"8__EMDpTa1_SRbpp-febZvNoigt59qeOCU4fe0beUvxPF_hAiUSy1HEBdrZnT-w2CSlKyBqbH3HJV0C9lv5kRW9KYUXw7Gu5pLGr5LijewtuQ","openid":"oJ93R07DIB5MLhMamBbdc6QErU8A","scope":"snsapi_base"}

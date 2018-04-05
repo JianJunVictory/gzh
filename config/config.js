@@ -20,7 +20,7 @@ const config = {
         port: 1234
     },
     authToken: {
-        redirect_url: 'http://1203f9d1.ngrok.io/cognate/bind',
+        redirect_url: 'http://deb5eaa5.ngrok.io/cognate/bind',
         state: '123',
         scope: 'snsapi_base'
     },
@@ -30,7 +30,7 @@ const config = {
             "port": 3306,
             "user": "root",
             "password": "123456",
-            "database": "fishdb",
+            "database": "wechat",
             "charset": "UTF8_GENERAL_CI",
             "connectNum": 10,
             "idleTimeoutMillis": 30000

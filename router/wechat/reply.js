@@ -44,8 +44,8 @@ function dotext(req, opts, cb) {
         } else if (message.Event === 'Location') {
             cb("你上报的位置是：" + message.Latitude + message.Longtiude + '-' + message.Precision);
         } else if (message.Event === 'CLICK') {
-            if (message.EventKey == 'join_qun') {
-                var replys = 'http://sighttp.qq.com/authd?IDKEY=f7968c8570255f4f492d90a5689ec2c9cb0250c03962254c'
+            if (message.EventKey == 'bind') {
+                var replys = 'http://deb5eaa5.ngrok.io/cognate/code'
             } else {
                 var replys = "你点击了菜单:" + message.EventKey
             }
