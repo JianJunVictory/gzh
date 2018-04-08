@@ -16,8 +16,9 @@ module.exports = function(config) {
     var table = {
         wechatUserInfo: seqFishDB.define('wechatUserInfo', {
             id: {
-                type: Sequelize.STRING,
-                primaryKey: true
+                type: Sequelize.INTEGER,
+                primaryKey: true,
+                autoIncrement: true
             },
             openId: {
                 type: Sequelize.STRING
@@ -27,6 +28,9 @@ module.exports = function(config) {
             },
             info: {
                 type: Sequelize.STRING
+            },
+            checkCode: {
+                type: Sequelize.STRING(8)
             }
         }, {
             freezeTableName: true,

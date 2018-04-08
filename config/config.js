@@ -20,7 +20,7 @@ const config = {
         port: 1234
     },
     authToken: {
-        redirect_url: 'http://deb5eaa5.ngrok.io/cognate/bind',
+        redirect_url: 'http://9c682fcf.ngrok.io/cognate/bind',
         state: '123',
         scope: 'snsapi_base'
     },

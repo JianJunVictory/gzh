@@ -45,7 +45,7 @@ function dotext(req, opts, cb) {
             cb("你上报的位置是：" + message.Latitude + message.Longtiude + '-' + message.Precision);
         } else if (message.Event === 'CLICK') {
             if (message.EventKey == 'bind') {
-                var replys = 'http://deb5eaa5.ngrok.io/cognate/code'
+                var replys = 'http://9c682fcf.ngrok.io/cognate/code'
             } else {
                 var replys = "你点击了菜单:" + message.EventKey
             }

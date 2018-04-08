@@ -10,16 +10,92 @@
 <body>
     <div class="page__hd">
         <h1 class="page__title" style="text-align:center;padding-top:5%">已绑定成功！</h1>
-        <p class="page__desc" style="text-align:center;padding-top:3%">您的游戏ID：<%= uid %></p>
+        <p class="page__desc" style="text-align:center">您的游戏ID：<%= uid %></p>
     </div>
     
         <div class="weui-btn-area">
-            <a class="weui-btn weui-btn_primary" href="javascript:" id="showTooltips">确定</a>
+            <a class="weui-btn weui-btn_primary" href="javascript:WeixinJSBridge.call('closeWindow');" id="showTooltips">确定</a>
         </div>
         <div class="weui-btn-area">
-			<a href="javascript:;" class="weui-btn weui-btn_plain-primary" id="unbatch">解绑</a>
+           <a href="javascript:;" class="weui-btn weui-btn_plain-primary" id="showIOSDialog">解绑</a>
         </div>
+		<div id="dialogs">
+		    <div class="js_dialog" id="iosDialog1" style="opacity: 1;display:none;">
+                <div class="weui-mask"></div>
+                <div class="weui-dialog">
+                    <div class="weui-dialog__hd"><strong class="weui-dialog__title">解绑微信与游戏账号</strong></div>
+                    <div class="weui-dialog__bd">解绑后，您通过微信中活动获得的奖励，不会发到游戏中</div>
+                    <div class="weui-dialog__ft">
+                        <a href="javascript:$('#iosDialog1').hide();" class="weui-dialog__btn weui-dialog__btn_default">取消</a>
+                        <a href="javascript:unbatch();" class="weui-dialog__btn weui-dialog__btn_primary">解绑</a>
+                    </div>
+                </div>
+        	</div>
+			<div class="js_dialog" id="iosDialog2" style="display: none;">
+                <div class="weui-mask"></div>
+                <div class="weui-dialog">
+                    <div class="weui-dialog__hd"><strong class="weui-dialog__title">解绑成功</strong></div>
+                    <div class="weui-dialog__bd">您当前的微信已经与游戏账号解绑成功</div>
+                    <div class="weui-dialog__ft">
+                        <a href="javascript:WeixinJSBridge.call('closeWindow');" class="weui-dialog__btn weui-dialog__btn_primary">知道了</a>
+                    </div>
+                </div>
+		    </div>
+            <div class="js_dialog" id="iosDialog3" style="display: none;">
+                <div class="weui-mask"></div>
+                <div class="weui-dialog">
+                    <div class="weui-dialog__hd"><strong class="weui-dialog__title">解绑失败</strong></div>
+                    <div class="weui-dialog__bd">微信与游戏账号解绑失败，请您稍后再试</div>
+                    <div class="weui-dialog__ft">
+                        <a href="javascript:$('#iosDialog3').hide();;" class="weui-dialog__btn weui-dialog__btn_primary">知道了</a>
+                    </div>
+                </div>
+		    </div>
+            <div class="js_dialog" id="iosDialog4" style="display: none;">
+                <div class="weui-mask"></div>
+                <div class="weui-dialog">
+                    <div class="weui-dialog__hd"><strong class="weui-dialog__title">系统错误</strong></div>
+                    <div class="weui-dialog__bd">系统异常,请您稍后再试</div>
+                    <div class="weui-dialog__ft">
+                        <a href="javascript:$('#iosDialog4').hide();;" class="weui-dialog__btn weui-dialog__btn_primary">知道了</a>
+                    </div>
+                </div>
+		    </div>
+	</div>
 </body>
 <script src="/js/weui.js"></script>
 <script src="/js/zepto.min.js"></script>
+<script>
+    var uid='<%= uid %>'
+	var $iosDialog1 = $('#iosDialog1');
+    var $iosDialog2 = $('#iosDialog2');
+    var $iosDialog3 = $('#iosDialog3');
+    var $iosDialog4 = $('#iosDialog4');
+	$('#dialogs').on('click', '.weui-dialog__btn', function(){
+            $(this).parents('.js_dialog').fadeOut(200);
+        });
+	$('#showIOSDialog').on('click', function(){
+            $iosDialog1.show();
+     });
+	function unbatch(){
+		$('#iosDialog1').hide();
+		$.ajax({
+              type: 'POST',
+              url: '/cognate/unbind',
+              data:{uid:uid},
+              dataType: 'json',
+              success: function(data){
+                 if(data.errcode=='0'){
+                    $iosDialog2.show(); 
+                  }else{
+                    $iosDialog3.show();
+                  }
+               },
+               error: function(xhr, type,error){
+                     $iosDialog4.show();
+               }   
+        })   
+	}
+</script>
 </html>
+
