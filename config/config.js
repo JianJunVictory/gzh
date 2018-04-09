@@ -21,8 +21,13 @@ const config = {
     },
     authToken: {
         redirect_url: 'http://9c682fcf.ngrok.io/cognate/bind',
+        signIn_url: 'http://9c682fcf.ngrok.io/cognate/bind',
         state: '123',
         scope: 'snsapi_base'
+    },
+    visit_url: {
+        code: 'http://9c682fcf.ngrok.io/cognate/code',
+        page: 'http://9c682fcf.ngrok.io/welfare/page'
     },
     DBConfig: {
         fishdb: {
