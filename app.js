@@ -15,6 +15,9 @@ var userRouter = require('./router/black/userRouter')(router, config.wechat)
 var userRouter = require('./router/black/userRouter')(router, config.wechat)
 var authTokenRouter = require('./router/cognate/bindUid')(router)
 var signInRouter = require('./router/welfare/signIn')(router)
+var mallRouter = require('./router/welfare/gameMall')(router)
+var activeRouter = require('./router/welfare/actives')(router)
+
 
 
 app.set("view engine", 'ejs');
@@ -33,6 +36,8 @@ app.use('/tag', tagRouter);
 app.use('/user', userRouter);
 app.use('/cognate', authTokenRouter);
 app.use('/welfare', signInRouter);
+app.use('/mall', mallRouter);
+app.use('/active', activeRouter);
 
 app.get('/name', function(req, res) {
     res.send('aaaa')

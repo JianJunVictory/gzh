@@ -8,11 +8,11 @@ var Moment=require('moment');
 
 module.exports=function(router){
 	var tokenApi=new Token(opts);
-    router.get('/page',function(req,res){
-        var url='https://open.weixin.qq.com/connect/oauth2/authorize?appid='+opts.appID+'&redirect_uri='+authInfo.signIn_url+'&response_type=code&scope='+authInfo.scope+'&state='+authInfo.state+'#wechat_redirect'
+    router.get('/pages',function(req,res){
+        var url='https://open.weixin.qq.com/connect/oauth2/authorize?appid='+opts.appID+'&redirect_uri='+authInfo.mall_url+'&response_type=code&scope='+authInfo.scope+'&state='+authInfo.state+'#wechat_redirect'
         res.redirect(url);
     })
-    router.get('/signIn',function(req,res){
+    router.get('/mallPage',function(req,res){
         var code =req.query.code;
         tokenApi.getAuthToken(code).then(function(data){
             var _data=data;
@@ -22,25 +22,27 @@ module.exports=function(router){
                 }else{
                     return Promise.resolve(result);
                 }
-            }).then(function(data1){
+            }).then(function(dataInfo){
+				var data1=dataInfo.dataValues;
                 if(data1.uid && data1.openId  && data1.info){
-                  	global.DBManager.wechatSignInAward.findAll().then(function(result){
-						var AwardArr=result[0].dataValues;
-						var getTime=Moment(new Date()).format("YYYY-MM-DD");
-						global.DBManager.wechatSignInAwardRecord.findOne({where:{uid:data1.uid,openId:data1.openId,getTime:getTime}}).then(function(result){
-							if(!result){
-								var isGet=false;
-    		                    res.render('signIn.html',{uid:data1.uid,openId:data1.openId,AwardArr:AwardArr,isGet:isGet});
-								return;
+					 global.DBManager.wechatMall.findAll({where:{isDisplay:true}}).then(function(_datas){
+						if(!_datas){
+							//返回一个商场没开通的页面，尽请等待页面，稍后在做
+							return;
+						}
+						var coinArr=[];
+						var diamandArr=[];
+						for(var i=0;i<_datas.length;i++){
+							if(_datas[i].dataValues.itemId=='1001'){
+								coinArr.push(_datas[i].dataValues)
+							}else{
+								diamandArr.push(_datas[i].dataValues);
 							}
-							var isGet=true;
-                            res.render('signIn.html',{uid:data1.uid,openId:data1.openId,AwardArr:AwardArr,isGet:isGet});
-						}).catch(function(err){
-							 res.render('404.html');	
-						})
-					}).catch(function(err){
-						res.render('404.html');
-					})
+						}
+						res.render('mall.html',{uid:data1.uid,coinArr:coinArr,diamandArr:diamandArr});
+					 }).catch(function(err){
+						console.log(err);
+					 })
                 }else{
 					res.render('goBind.html',{url:visitUrl.code});
                 }
@@ -50,7 +52,7 @@ module.exports=function(router){
             })
         })
     })
-	router.post('/getAward',function(req,res){
+	router.post('/buy',function(req,res){
 		var data=req.body;
 		console.dir(data);
 		data.getTime=Moment(new Date()).format("YYYY-MM-DD");

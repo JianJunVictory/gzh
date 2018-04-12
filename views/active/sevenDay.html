@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie-edge">
+	<link rel="stylesheet" href="/css/weui.css">
+	<title>7天活动登录页面</title>
+</head>
+<body>
+
+	
+	游戏账号:<%= uid %>
+	
+	<div class="page flex js_show">
+	<% awardArr.forEach(function(item){ %>
+	<div class="weui-flex">
+		<div><div class="placeholder" style="height: 4em;margin: 5px;"><div class="weui-btn weui-btn_mini weui-btn_default" style="margin-top:15px">第<%= item.day %>天</div></div></div>
+        <div class="weui-flex__item">
+			<div class="placeholder" style="height: 4em;background-color: #ebebeb;padding: 0 1px;margin: 5px;">
+				<% item.awardContent.award.forEach(function(awards){ %>
+				<span style="float:left;">
+					<p style="text-align:center"><img src="<%= awards.icon %>" style="height:40px;"></p>
+					<% if(awards.amount > 10000 && awards.amount < 100000 ){ %>
+					<% awards.amount=(awards.amount/10000).toFixed(2)+'万' } else if(awards.amount > 1000000 && awards.amount < 10000000) { %>
+					<% awards.amount=(awards.amount/1000000).toFixed(2)+'百万' } else if(awards.amount > 10000000 && awards.amount < 100000000) { %>
+					<% awards.amount=(awards.amount/10000000).toFixed(2)+'千万' } else if(awards.amount > 100000000) { %>
+					<% awards.amount=(awards.amount/100000000).toFixed(2)+'亿' } %>
+					<p style="font-size: 13px;text-align:center"><%= awards.amount %></p>
+				</span>
+				<%	}) %>
+			</div>
+		</div>
+		<div><div class="placeholder" style="height: 4em;padding: 0 1px;margin: 5px;"><span class="weui-btn weui-btn_mini weui-btn_primary" style="margin-top:15px">领取</span></div></div>
+    </div>
+	<% }) %>
+	</div>
+
+
+	 <div class="weui-msg__extra-area">
+         <div class="weui-footer">
+             <p class="weui-footer__links">
+                  <a href="http://www.wmcyou.com/" class="weui-footer__link">玩美创游</a>
+             </p>
+             <p class="weui-footer__text">Copyright © 2008-2018 www.wmcyou.com</p>
+         </div>
+     </div>
+
+</body>
+<script src="/js/weui.js"></script>
+<script src="/js/zepto.min.js"></script>
+</html>

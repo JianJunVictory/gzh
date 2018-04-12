@@ -27,10 +27,138 @@ module.exports = function(config) {
                 type: Sequelize.STRING
             },
             info: {
-                type: Sequelize.STRING
+                type: Sequelize.TEXT
             },
             checkCode: {
                 type: Sequelize.STRING(8)
+            }
+        }, {
+            freezeTableName: true,
+            timestamps: false
+        }),
+        wechatSignInAward: seqFishDB.define('wechatSignInAward', {
+            id: {
+                type: Sequelize.INTEGER,
+                primaryKey: true,
+                autoIncrement: true
+            },
+            itemId: {
+                type: Sequelize.STRING(8)
+            },
+            itemName: {
+                type: Sequelize.STRING(255)
+            },
+            itemNum: {
+                type: Sequelize.INTEGER
+            },
+            itemImg: {
+                type: Sequelize.STRING(255)
+            }
+        }, {
+            freezeTableName: true,
+            timestamps: false
+        }),
+        wechatSignInAwardRecord: seqFishDB.define('wechatSignInAwardRecord', {
+            id: {
+                type: Sequelize.INTEGER,
+                primaryKey: true,
+                autoIncrement: true
+            },
+            uid: {
+                type: Sequelize.STRING(255)
+            },
+            openId: {
+                type: Sequelize.STRING(255)
+            },
+            itemId: {
+                type: Sequelize.STRING(8)
+            },
+            itemName: {
+                type: Sequelize.STRING(255)
+            },
+            itemNum: {
+                type: Sequelize.INTEGER
+            },
+            getTime: {
+                type: Sequelize.STRING(255)
+            }
+        }, {
+            freezeTableName: true,
+            timestamps: false
+        }),
+        wechatMall: seqFishDB.define('wechatMall', {
+            id: {
+                type: Sequelize.INTEGER,
+                primaryKey: true,
+                autoIncrement: true
+            },
+            itemId: {
+                type: Sequelize.STRING(8)
+            },
+            itemName: {
+                type: Sequelize.STRING(255)
+            },
+            itemNum: {
+                type: Sequelize.INTEGER
+            },
+            itemImg: {
+                type: Sequelize.STRING(255)
+            },
+            itemPrice: {
+                type: Sequelize.INTEGER
+            },
+            isDisplay: {
+                type: Sequelize.BOOLEAN
+            }
+        }, {
+            freezeTableName: true,
+            timestamps: false
+        }),
+        wechatActive: seqFishDB.define('wechatActive', {
+            id: {
+                type: Sequelize.INTEGER,
+                primaryKey: true,
+                autoIncrement: true
+            },
+            activeName: {
+                type: Sequelize.STRING(255)
+            },
+            englishName: {
+                type: Sequelize.STRING(255)
+            },
+            activeDesc: {
+                type: Sequelize.TEXT
+            },
+            activeIcon: {
+                type: Sequelize.STRING(255)
+            },
+            isOpen: {
+                type: Sequelize.BOOLEAN
+            },
+            startTime: {
+                type: Sequelize.DATE
+            },
+            stopTime: {
+                type: Sequelize.DATE
+            }
+        }, {
+            freezeTableName: true,
+            timestamps: false
+        }),
+        wechatSevenDay: seqFishDB.define("wechatSevenDay", {
+            id: {
+                type: Sequelize.INTEGER,
+                primaryKey: true,
+                autoIncrement: true
+            },
+            day: {
+                type: Sequelize.INTEGER(2)
+            },
+            awardContent: {
+                type: Sequelize.TEXT
+            },
+            awardDesc: {
+                type: Sequelize.STRING(255)
             }
         }, {
             freezeTableName: true,

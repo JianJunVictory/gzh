@@ -20,14 +20,20 @@ const config = {
         port: 1234
     },
     authToken: {
-        redirect_url: 'http://9c682fcf.ngrok.io/cognate/bind',
-        signIn_url: 'http://9c682fcf.ngrok.io/cognate/bind',
+        redirect_url: 'https://wechattest.wanchuangyou.com/cognate/bind',
+        signIn_url: 'https://wechattest.wanchuangyou.com/welfare/signIn',
+        mall_url: 'https://wechattest.wanchuangyou.com/mall/mallPage',
+        active_url: 'https://wechattest.wanchuangyou.com/active/activePage',
+        activePrefix_url: 'https://wechattest.wanchuangyou.com/active/',
         state: '123',
         scope: 'snsapi_base'
     },
     visit_url: {
-        code: 'http://9c682fcf.ngrok.io/cognate/code',
-        page: 'http://9c682fcf.ngrok.io/welfare/page'
+        code: 'https://wechattest.wanchuangyou.com/cognate/code',
+        page: 'https://wechattest.wanchuangyou.com/welfare/page',
+        mall: 'https://wechattest.wanchuangyou.com/mall/pages',
+        active: 'https://wechattest.wanchuangyou.com/active/active',
+        activePrefix: 'https://wechattest.wanchuangyou.com/active/'
     },
     DBConfig: {
         fishdb: {
