@@ -5,8 +5,8 @@ const fpath = path.join(__dirname, './wechat.txt');
 
 const config = {
     wechat: {
-        appID: "wx63e04fe98fc74772",
-        appsecret: "8241a22c4bbca8fcc2863bb2b000930d",
+        appID: "********************",
+        appsecret: "*********************",
         token: "guangxinxiliujianjun",
         getAccessToken: function() {
             return util.readFileAsync(fpath);
